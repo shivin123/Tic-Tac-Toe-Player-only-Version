@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import random
 con=0
 board_start=[[" "," "," "],[" "," "," "],[" "," "," "]]
@@ -38,6 +32,13 @@ def coin_vis(coin_vis_val):
         
 coin=[0, 1]
 
+p1=str(input("Enter Player 1 name: "))
+while len(p1)==0:
+    p1=str(input("Enter Player 1 name: "))
+    
+p2=str(input("Enter Player 2 name: "))
+while len(p2)==0:
+    p2=str(input("Enter Player 2 name: "))
 
 input("Press any key to flip a coin to decided who starts: ")
 
@@ -46,12 +47,12 @@ speed_tie_breaker=random.choice(coin)
 if speed_tie_breaker==1:
     coin_vis(1)
     print('Heads')
-    print('X plays first')
+    print(p1+' plays first')
     p=1
 if speed_tie_breaker==0:
     coin_vis(0)
     print('Tails')
-    print('O plays first')
+    print(p2+' plays first')
     p=0
 
 print_board(board)
@@ -59,7 +60,8 @@ print_board(board)
 def player_input(p):
     inp=input("Enter the coorditnates of where you whish to play: ")
     am=[1,2,3]
-    if int(inp[0]) not in am or int(inp[2]) not in am:
+    if int(inp[0]) not in am or int(inp[2]) not in am or inp[1]!=",":
+        print("Invalid input")
         inp=input("Enter the coorditnates of where you whish to play: ")
     if board[int(inp[0])-1][int(inp[2])-1]==" ":
         if p==1:
@@ -83,36 +85,36 @@ while ge==0:
     
     for i in range(3):
         if board[0][i]=="X" and board[1][i]=="X" and board[2][i]=="X":
-            print("Player X wins!")
+            print(p1+" wins!")
             ge=1
             break
         if board[0][i]=="O" and board[1][i]=="O" and board[2][i]=="O":
-            print("Player O wins!")
+            print(p2+" wins!")
             ge=1
             break
         if board[i][0]=="X" and board[i][1]=="X" and board[i][2]=="X":
-            print("Player X wins!")
+            print(p1+" wins!")
             ge=1
             break
         if board[i][0]=="O" and board[i][1]=="O" and board[i][2]=="O":
-            print("Player O wins!")
+            print(p2+" wins!")
             ge=1
             break
             
     if board[0][0]=="X" and board[1][1]=="X" and board[2][2]=="X":
-        print("Player X wins!")
+        print(p1+" wins!")
         ge=1
         break
     if board[0][0]=="O" and board[1][1]=="O" and board[2][2]=="O":
-        print("Player O wins!")
+        print(p2+" wins!")
         ge=1
         break
     if board[0][2]=="X" and board[1][1]=="X" and board[2][0]=="X":
-        print("Player X wins!")
+        print(p1+" wins!")
         ge=1
         break
     if board[0][2]=="O" and board[1][1]=="O" and board[2][0]=="O":
-        print("Player O wins!")
+        print(p2+" wins!")
         ge=1
         break
     if ge==0:    
@@ -123,10 +125,3 @@ while ge==0:
         else:
             p=1
     
-
-
-# In[ ]:
-
-
-
-
